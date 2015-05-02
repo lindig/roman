@@ -12,7 +12,7 @@ convert modern roman numerals to integer:
     $ make
     $ make PREFIX=$(HOME) install 
 
-The implementation is in `roman.mll` and uses the ocamllex to build an
+The implementation is in `roman.mll` and uses ocamllex to build an
 automaton for recognising roman numerals. To use as a module, simply copy
 `roman.mll` and `roman.mli` into your own project. (I didn't bother yet to
 pack it up for Opam.)
@@ -28,6 +28,6 @@ Christian Lindig <lindig@gmail.com>
 
 # License
 
-This code is in the public domain.
+This code is licensed under the BSD 2-clause license.
 
 
