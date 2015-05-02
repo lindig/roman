@@ -11,7 +11,9 @@ convert modern roman numerals to integer:
     $ ./roman mdcccl
     mdcccl = 1850
 
-The module detects illegal syntax like the following:
+The module accepts the syntax for [modern roman
+numerals](http://en.wikipedia.org/wiki/Roman_numerals) as defined by
+Wikipedia and detects illegal syntax like the following:
 
     im 
     xcc  
