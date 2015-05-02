@@ -6,6 +6,20 @@ convert modern roman numerals to integer:
 
     $ ./roman mmxv
     mmxv = 2015
+    $ ./roman mcmxcix
+    mcmxcix = 1999
+    $ ./roman mdcccl
+    mdcccl = 1850
+
+The module detects illegal syntax like the following:
+
+    im 
+    xcc  
+    ic
+    imm
+    mxm
+    viiii
+    ivi
 
 # Build
 
