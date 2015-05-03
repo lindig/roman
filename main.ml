@@ -24,13 +24,16 @@ let fail str =
     with 
         Roman.Error _ -> true
 
+let idem i =
+    let r  = Roman.of_int i  in
+    let i' = Roman.to_int r  in
+    let r' = Roman.of_int i' in
+    r = r' && i = i' 
+
 let test () =
-    let rec loop i =
-        if i = 0 then true else
-            let r  = Roman.of_int i  in
-            let i' = Roman.to_int r  in
-            let r' = Roman.of_int i' in
-            r = r' && i = i' && loop (i-1)
+    let rec loop = function
+        | 0 -> true
+        | n -> idem n && loop (n-1)
     in
         loop 3999 && List.for_all fail syntax
 
@@ -58,15 +61,11 @@ let main () =
                   then (Printf.printf "passed\n"; exit 0)
                   else (Printf.printf "failed\n"; exit 1)
    | ["-test";n] ->
-                  let i  = integer n in
-                  let r  = Roman.of_int i  in
-                  let i' = Roman.to_int r  in
-                  let r' = Roman.of_int i' in
-                  if i = i' && r = r' then
-                  ( Printf.printf "passed (%s)\n" r
+                  if idem @@ integer n then
+                  ( Printf.printf "passed\n"
                   ; exit 0
                   ) else
-                  ( Printf.printf "failed (%d = %s = %s = %d)\n" i r r' i'
+                  ( Printf.printf "failed\n"
                   ; exit 1
                   )
    |  "-h"::_  -> (usage (); exit 0)
