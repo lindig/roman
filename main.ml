@@ -57,6 +57,18 @@ let main () =
    | ["-test"] -> if test () 
                   then (Printf.printf "passed\n"; exit 0)
                   else (Printf.printf "failed\n"; exit 1)
+   | ["-test";n] ->
+                  let i  = integer n in
+                  let r  = Roman.of_int i  in
+                  let i' = Roman.to_int r  in
+                  let r' = Roman.of_int i' in
+                  if i = i' && r = r' then
+                  ( Printf.printf "passed (%s)\n" r
+                  ; exit 0
+                  ) else
+                  ( Printf.printf "failed (%d = %s = %s = %d)\n" i r r' i'
+                  ; exit 1
+                  )
    |  "-h"::_  -> (usage (); exit 0)
    | [str]     -> ( Printf.printf "%d\n"  (Roman.to_int str)
                   ; exit 0

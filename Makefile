@@ -10,11 +10,9 @@ all:
 
 test:	all
 	./roman -test
-	./roman mmxv
-	./roman mcmxcix
-	./roman mdcccl
 	! ./roman xxxx
 	! ./roman im
+	for i in $$(seq 1 3999); do ./roman -test $i > /dev/null; done
 	echo "test passed"
 
 clean:
