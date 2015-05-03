@@ -1,6 +1,9 @@
 (** Simple command line tool to convert roman numerals to integers 
 *)
 
+exception Error of string
+let error fmt = Printf.kprintf (fun msg -> raise (Error msg)) fmt
+
 let tests =     
     [ "i"       ,1
     ; "iv"      ,4
@@ -36,23 +39,34 @@ let test () =
         List.for_all (fun (left,right) -> Roman.to_int left = right) tests
     &&  List.for_all fail syntax
 
+let integer str =
+    try int_of_string str
+    with Failure _ -> error "not an integer: %s" str
+
+let usage () =
+    List.iter prerr_endline
+[ "usage: roman mmxv"
+; "       roman -i 123"
+]
+
 (** [main] function - handles command line arguments and exit codes *)
 let main () =
    let argv = Array.to_list Sys.argv in
    let args = List.tl argv in
-   let this = List.hd argv |> Filename.basename in
    match args with
    | ["-test"] -> if test () 
                   then (Printf.printf "passed\n"; exit 0)
                   else (Printf.printf "failed\n"; exit 1)
-   | [str]     -> let n = Roman.to_int str in
-                    ( Printf.printf "%d (%s)\n"  n (Roman.of_int n)
-                    ; exit 0
-                    )
-   | _         -> Printf.eprintf "usage: %s <roman numeral>\n" this; exit 1
-
-
-
+   |  "-h"::_  -> (usage (); exit 0)
+   | [str]     -> ( Printf.printf "%d\n"  (Roman.to_int str)
+                  ; exit 0
+                  )
+   | ["-i";n]  -> ( Printf.printf "%s\n" (Roman.of_int @@ integer n)
+                  ; exit 0
+                  )
+   | _         -> ( usage ()
+                  ; exit 1
+                  )
         
 let () = 
     try main () with 

@@ -15,6 +15,7 @@ test:	all
 	./roman mdcccl
 	! ./roman xxxx
 	! ./roman im
+	echo "test passed"
 
 clean:
 	$(OCB) -clean

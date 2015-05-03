@@ -8,7 +8,8 @@
     cm = 900
     cd = 400
     
-    (c) 2015 Christian Lindig <lindig@gmail.com>
+    (c) 2015 Christian Lindig <lindig@gmail.com>. This is licensed
+    under the BSD 2-clause license.
     *)
 
     exception Error of string

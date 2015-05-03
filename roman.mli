@@ -1,3 +1,9 @@
+(** 
+    Convert between a Roman Numeral and an integer. 
+
+    (c) 2015 Christian Lindig <lindig@gmail.com>
+    Covered by the BSD 2-clause license.
+*)
 
 (** raised in case of error *)
 exception Error of string
@@ -9,7 +15,6 @@ val of_int: int -> string (* raises Error *)
     as an integer. [to_int] is case insensitive and accepts the modern 
     syntax for roman numerals as described in 
     http://en.wikipedia.org/wiki/Roman_numerals *)
-
 val to_int: string -> int (* raises Error *)
 
 
