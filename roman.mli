@@ -2,7 +2,7 @@
 (** raised in case of error *)
 exception Error of string
 
-(** [of_int n] returns the representation of [n] as a roman numeral.
+(** [of_int n] returns the representation of [n] as a roman numeral. *)
 val of_int: int -> string (* raises Error *)
 
 (** [to_int str] takes a roman numeral [str] and computes its value 
