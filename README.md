@@ -44,7 +44,12 @@ pack it up for Opam.)
 # Syntax
 
 For the syntax of roman numerals recognised by the module, take a look at
-`roman.mll` where it is encoded as a regular expression.
+`roman.mll` where it is encoded as a regular expression:
+
+    (M|MM|MMM)?
+    (D?(C|CC|CCC)?|CD|CM)?
+    (L?(X|XX|XXX)?|XL|XC)?
+    (V?(I|II|III)?|IV|IX)?
 
 # Author
 
