@@ -12,7 +12,7 @@ test:	all
 	./roman -test
 	! ./roman xxxx
 	! ./roman im
-	for i in $$(seq 1 3999); do ./roman -test $i > /dev/null; done
+	./roman mmxv
 	echo "test passed"
 
 clean:

@@ -4,17 +4,6 @@
 exception Error of string
 let error fmt = Printf.kprintf (fun msg -> raise (Error msg)) fmt
 
-let tests =     
-    [ "i"       ,1
-    ; "iv"      ,4
-    ; "II"      ,2
-    ; "mdc"     ,1600
-    ; "cmxlix"  ,949
-    ; "ix"      ,9
-    ; "xxix"    ,29
-    ; "lxvi"    ,66
-    ]
-
 let syntax =
     [ "xxxx"
     ; "im"
@@ -35,9 +24,15 @@ let fail str =
     with 
         Roman.Error _ -> true
 
-let test () = 
-        List.for_all (fun (left,right) -> Roman.to_int left = right) tests
-    &&  List.for_all fail syntax
+let test () =
+    let rec loop i =
+        if i = 0 then true else
+            let r  = Roman.of_int i  in
+            let i' = Roman.to_int r  in
+            let r' = Roman.of_int i' in
+            r = r' && i = i' && loop (i-1)
+    in
+        loop 3999 && List.for_all fail syntax
 
 let integer str =
     try int_of_string str
