@@ -45,7 +45,10 @@ let main () =
    | ["-test"] -> if test () 
                   then (Printf.printf "passed\n"; exit 0)
                   else (Printf.printf "failed\n"; exit 1)
-   | [str]     -> Printf.printf "%d\n" @@ Roman.to_int str; exit 0
+   | [str]     -> let n = Roman.to_int str in
+                    ( Printf.printf "%d (%s)\n"  n (Roman.of_int n)
+                    ; exit 0
+                    )
    | _         -> Printf.eprintf "usage: %s <roman numeral>\n" this; exit 1
 
 
