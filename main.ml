@@ -16,6 +16,12 @@ let syntax =
     [ "xxxx"
     ; "im"
     ; "abc"
+    ; "xcc"  
+    ; "ic"
+    ; "imm"
+    ; "mxm"
+    ; "viiii"
+    ; "ivi"
     ]
 
 let fail str =

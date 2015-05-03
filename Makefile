@@ -13,9 +13,8 @@ test:	all
 	./roman mmxv
 	./roman mcmxcix
 	./roman mdcccl
-	./roman xxxx || true
-	./roman im || true
-
+	! ./roman xxxx
+	! ./roman im
 
 clean:
 	$(OCB) -clean
