@@ -40,9 +40,14 @@ let integer str =
 
 let usage () =
     List.iter prerr_endline
-[ "usage: roman mmxv"
-; "       roman -i 123"
-]
+    [ "usage: roman mmxv        convert mmxv to integer"
+    ; "       roman -i 123      convert 123 to roman"
+    ; "       roman -test       run internal tests using 1 .. 3999" 
+    ; "       roman -test 123   run internal test using 123"
+    ; ""
+    ; "(c) 2015 Christian Lindig <lindig@gmail.com>"
+    ; "https://github.com/lindig/roman"
+    ]
 
 (** [main] function - handles command line arguments and exit codes *)
 let main () =
