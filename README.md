@@ -23,6 +23,13 @@ Wikipedia and detects illegal syntax like the following:
     viiii
     ivi
 
+This little exercise was prompted by an article [Radikale
+Objektorientierung: Teil 2: Verhalten prinzipiengeleitet
+verfeinern](http://www.sigs-datacom.de/fachzeitschriften/objektspektrum) in
+OBJEKTspektrum issue 2/12015 that used conversion of roman numerals as an
+example for OO design. The [code from that article is available on
+GitHub](https://github.com/ralfw/TheArchitectsNapkinBlog).
+
 # Build and Test
 
     $ make
