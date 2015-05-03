@@ -16,38 +16,26 @@
 
     let concat digits = String.concat "" @@ List.rev digits
 
-    let rec ones digits = function
-    | n when n  = 9    -> concat    ("ix" :: digits)
-    | n when n >= 5    -> ones      ("v"  :: digits) (n-5)
-    | n when n  = 4    -> concat    ("iv" :: digits)
-    | n when n >= 1    -> ones      ("i"  :: digits) (n-1)
-    | _                -> concat    digits
-
-    let rec tens digits = function
-    | n when n >= 90   -> ones      ("xc" :: digits) (n-90)
-    | n when n >= 50   -> tens      ("l"  :: digits) (n-50)
-    | n when n >= 40   -> ones      ("xl" :: digits) (n-40)
-    | n when n >= 10   -> tens      ("x"  :: digits) (n-10)
-    | n                -> ones      digits            n 
-
-    let rec hundreds digits = function
-    | n when n >= 900  -> tens      ("cm" :: digits) (n-900)
-    | n when n >= 500  -> hundreds  ("d"  :: digits) (n-500)
-    | n when n >= 400  -> tens      ("cd" :: digits) (n-400)
-    | n when n >= 100  -> hundreds  ("c"  :: digits) (n-100)
-    | n                -> tens      digits            n 
-
-    let rec thousands = function
-    | n when n >= 4000 -> error "can't represent %d" n
-    | n when n >= 3000 -> hundreds ["mmm"]  (n-3000)
-    | n when n >= 2000 -> hundreds ["mm"]   (n-2000)
-    | n when n >= 1000 -> hundreds ["m"]    (n-1000)
-    | n                -> hundreds []        n
+    let rec roman digits = function
+    | n when n >= 1000 -> roman ("m"  :: digits) (n-1000)
+    | n when n >=  900 -> roman ("cm" :: digits) (n-900)
+    | n when n >=  500 -> roman ("d"  :: digits) (n-500)
+    | n when n >=  400 -> roman ("cd" :: digits) (n-400)
+    | n when n >=  100 -> roman ("c"  :: digits) (n-100)
+    | n when n >=   90 -> roman ("xc" :: digits) (n-90)
+    | n when n >=   50 -> roman ("l"  :: digits) (n-50)
+    | n when n >=   40 -> roman ("xl" :: digits) (n-40)
+    | n when n >=   10 -> roman ("x"  :: digits) (n-10)
+    | n when n  =    9 -> roman ("ix" :: digits) (n-9)
+    | n when n >=    5 -> roman ("v"  :: digits) (n-5)
+    | n when n  =    4 -> roman ("iv" :: digits) (n-4)
+    | n when n >=    1 -> roman ("i"  :: digits) (n-1)
+    | n                -> concat digits
 
     let of_int n =
         if n <= 0 || n > 3889 
         then error "can't represent %d as a roman numeral" n 
-        else thousands n 
+        else roman [] n 
 
 }
 
