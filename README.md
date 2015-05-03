@@ -23,9 +23,10 @@ Wikipedia and detects illegal syntax like the following:
     viiii
     ivi
 
-# Build
+# Build and Test
 
     $ make
+    $ make test
     $ make PREFIX=$(HOME) install 
 
 The implementation is in `roman.mll` and uses ocamllex to build an
