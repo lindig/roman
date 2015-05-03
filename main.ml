@@ -12,8 +12,23 @@ let tests =
     ; "lxvi"    ,66
     ]
 
+let syntax =
+    [ "xxxx"
+    ; "im"
+    ; "abc"
+    ]
+
+let fail str =
+    try 
+        ( Roman.to_int str |> ignore
+        ; false
+        )
+    with 
+        Roman.Error _ -> true
+
 let test () = 
-    List.for_all (fun (left,right) -> Roman.to_int left = right) tests
+        List.for_all (fun (left,right) -> Roman.to_int left = right) tests
+    &&  List.for_all fail syntax
 
 (** [main] function - handles command line arguments and exit codes *)
 let main () =

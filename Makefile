@@ -8,6 +8,9 @@ all:
 	$(OCB) main.native
 	mv main.native roman
 
+test:	all
+	./roman -test
+
 clean:
 	$(OCB) -clean
 	rm -f roman
