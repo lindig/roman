@@ -2,14 +2,12 @@
 # Roman - convert roman numerals to integer
 
 This repository provides an OCaml module and minimal command line tool to
-convert modern roman numerals to integer:
+convert modern roman numerals to integer and vice versa:
 
-    $ ./roman mmxv
-    mmxv = 2015
-    $ ./roman mcmxcix
-    mcmxcix = 1999
-    $ ./roman mdcccl
-    mdcccl = 1850
+    $ roman mmxv
+    2015
+    $ roman -i 1234
+    mccxxxiv
 
 The module accepts the syntax for [modern roman
 numerals](http://en.wikipedia.org/wiki/Roman_numerals) as defined by
