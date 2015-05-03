@@ -17,6 +17,7 @@
     let concat digits = String.concat "" @@ List.rev digits
 
     let rec roman digits = function
+    | n when n >= 4000 -> error "can't represent %d as a roman numeral" n
     | n when n >= 1000 -> roman ("m"  :: digits) (n-1000)
     | n when n >=  900 -> roman ("cm" :: digits) (n-900)
     | n when n >=  500 -> roman ("d"  :: digits) (n-500)
@@ -30,12 +31,10 @@
     | n when n >=    5 -> roman ("v"  :: digits) (n-5)
     | n when n  =    4 -> roman ("iv" :: digits) (n-4)
     | n when n >=    1 -> roman ("i"  :: digits) (n-1)
-    | n                -> concat digits
+    | 0                -> concat digits
+    | n                -> error "can't represent %d as a roman numeral" n
 
-    let of_int n =
-        if n <= 0 || n > 3889 
-        then error "can't represent %d as a roman numeral" n 
-        else roman [] n 
+    let of_int n = roman [] n 
 
 }
 
