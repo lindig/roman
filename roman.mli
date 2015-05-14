@@ -7,14 +7,21 @@
 
 (** raised in case of error *)
 exception Error of string
+type number =
+    | Roman     of string
+    | Decimal   of int
 
-(** [of_int n] returns the representation of [n] as a roman numeral. *)
-val of_int: int -> string (* raises Error *)
+(** [as_roman n] returns the representation of [n] as a roman numeral. *)
+val as_roman: int -> string (* raises Error *)
 
-(** [to_int str] takes a roman numeral [str] and computes its value 
+(** [from_roman] takes a roman numeral [str] and computes its value 
     as an integer. [to_int] is case insensitive and accepts the modern 
     syntax for roman numerals as described in 
     http://en.wikipedia.org/wiki/Roman_numerals *)
-val to_int: string -> int (* raises Error *)
+val from_roman: string -> int (* raises Error *)
 
+
+(** [scan str] reads a string that is either a roman numeral or an integer
+    and returns it *)
+val scan: string -> number
 

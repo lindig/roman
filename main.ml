@@ -18,16 +18,16 @@ let syntax =
 
 let fail str =
     try 
-        ( Roman.to_int str |> ignore
+        ( Roman.from_roman str |> ignore
         ; false
         )
     with 
         Roman.Error _ -> true
 
 let idem i =
-    let r  = Roman.of_int i  in
-    let i' = Roman.to_int r  in
-    let r' = Roman.of_int i' in
+    let r  = Roman.as_roman i  in
+    let i' = Roman.from_roman r  in
+    let r' = Roman.as_roman i' in
     r = r' && i = i' 
 
 let test () =
@@ -44,7 +44,7 @@ let integer str =
 let usage () =
     List.iter prerr_endline
     [ "usage: roman mmxv        convert mmxv to integer"
-    ; "       roman -i 123      convert 123 to roman"
+    ; "       roman 123         convert 123 to roman"
     ; "       roman -test       run internal tests using 1 .. 3999" 
     ; "       roman -test 123   run internal test using 123"
     ; ""
@@ -69,10 +69,12 @@ let main () =
                   ; exit 1
                   )
    |  "-h"::_  -> (usage (); exit 0)
-   | [str]     -> ( Printf.printf "%d\n"  (Roman.to_int str)
-                  ; exit 0
-                  )
-   | ["-i";n]  -> ( Printf.printf "%s\n" (Roman.of_int @@ integer n)
+   | [str]     -> ( ( match Roman.scan str with
+                    | Roman.Decimal(d) -> 
+                        Printf.printf "%s\n" @@ Roman.as_roman d
+                    | Roman.Roman(r) ->
+                        Printf.printf "%d\n" @@ Roman.from_roman r
+                    )
                   ; exit 0
                   )
    | _         -> ( usage ()
