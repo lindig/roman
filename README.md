@@ -6,8 +6,11 @@ convert modern roman numerals to integer and vice versa:
 
     $ roman mmxv
     2015
-    $ roman -i 1234
+    $ roman 1234
     mccxxxiv
+
+The command line tool recognizes integer and roman numerals and emits it
+after conversion to the opposite format.
 
 The module accepts the syntax for [modern roman
 numerals](http://en.wikipedia.org/wiki/Roman_numerals) as defined by
